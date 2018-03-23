@@ -13,7 +13,7 @@ namespace OpenSage.Audio
 
         private List<AudioSource> _sources;
         private Dictionary<string, AudioBuffer> _files;
-
+        private Dictionary<string, AudioStream> _streams;
 
         internal static void alCheckError()
         {
@@ -50,6 +50,7 @@ namespace OpenSage.Audio
 
             _sources = new List<AudioSource>();
             _files = new Dictionary<string, AudioBuffer>();
+            _streams = new Dictionary<string, AudioStream>();
         }
 
         protected override void Dispose(bool disposeManagedResources)
@@ -65,7 +66,23 @@ namespace OpenSage.Audio
           
         }
 
-        public AudioSource PlayFile(string fileName,bool loop=false)
+        public AudioStream PlayStream(string fileName, bool loop = false)
+        {
+            AudioStream stream = null;
+            if (!_streams.ContainsKey(fileName))
+            {
+                stream = Game.ContentManager.Load<AudioStream>(fileName);
+                _streams[fileName] = stream;
+            }
+            else
+            {
+                stream = _streams[fileName];
+            }
+
+            return stream;
+        }
+
+        public AudioSource PlaySound(string fileName,bool loop=false)
         {
             AudioBuffer buffer = null;
             if (!_files.ContainsKey(fileName))

@@ -33,6 +33,12 @@
     <EmbeddedResource Include="Graphics\Shaders\*.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="OpenSage.FFmpeg">
+      <HintPath>..\..\..\OpenSAGE.FFmpeg\src\OpenSage.FFmpeg\bin\Debug\netstandard2.0\OpenSage.FFmpeg.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
   <Import Project="..\..\build\OpenSage.EffectCompiler.targets" />
 
   <Target Name="EmbedGeneratedShaderContent" AfterTargets="AssignTargetPaths">

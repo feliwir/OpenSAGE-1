@@ -9,7 +9,7 @@ using OpenSage.DataViewer.Controls;
 
 namespace OpenSage.DataViewer.UI.Viewers
 {
-    class WavView : GameControl
+    public sealed class WavView : GameControl
     {
         WavFile _file;
         Game _game;
@@ -21,7 +21,7 @@ namespace OpenSage.DataViewer.UI.Viewers
             {
                 _game = createGame(h);
             
-                var source = _game.Audio.PlayFile(entry.FilePath, true);
+                var source = _game.Audio.PlaySound(entry.FilePath, true);
                 source.Play();
 
                 return _game;

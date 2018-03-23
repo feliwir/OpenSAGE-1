@@ -87,6 +87,9 @@ namespace OpenSage.DataViewer.UI
                 case ".map":
                     return new MapView(entry, getGame);
 
+                case ".mp3":
+                    return new Mp3View(entry, getGame);
+
                 case ".ru":
                     return new RuView(entry, getGame);
 

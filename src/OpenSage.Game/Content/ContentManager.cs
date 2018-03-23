@@ -79,6 +79,7 @@ namespace OpenSage.Content
                 { typeof(Window), AddDisposable(new WindowLoader(this, wndCallbackResolver)) },
                 { typeof(AptWindow), AddDisposable(new AptLoader()) },
                 { typeof(WavFile), AddDisposable(new WavLoader()) },
+                { typeof(AudioStream), AddDisposable(new FFmpegAudioLoader()) },
             };
 
             _cachedObjects = new Dictionary<string, object>();
