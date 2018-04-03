@@ -59,6 +59,12 @@ namespace OpenSage.Gui.Apt.ActionScript
 
             if (!Variables.TryGetValue(name, out result))
             {
+                //Check if this is a property
+                if(Property.StringMapping.ContainsKey(name))
+                {
+                    return GetProperty(Property.StringMapping[name]);
+                }
+
                 Debug.WriteLine("[WARN] Undefined variable: " + name);
                 result = Value.Undefined();
             }
@@ -135,16 +141,16 @@ namespace OpenSage.Gui.Apt.ActionScript
             return result;
         }
 
-        public Value GetProperty(PropertyType property)
+        public Value GetProperty(Property.Type property)
         {
             Value result = null;
 
             switch (property)
             {
-                case PropertyType.Target:
+                case Property.Type.Target:
                     result = Value.FromString(GetTargetPath());
                     break;
-                case PropertyType.Name:
+                case Property.Type.Name:
                     result = Value.FromString(Item.Name);
                     break;
                 default:
@@ -154,11 +160,11 @@ namespace OpenSage.Gui.Apt.ActionScript
             return result;
         }
 
-        public void SetProperty(PropertyType property, Value val)
+        public void SetProperty(Property.Type property, Value val)
         {
             switch (property)
             {
-                case PropertyType.Visible:
+                case Property.Type.Visible:
                     Item.Visible = val.ToBoolean();
                     break;
                 default:

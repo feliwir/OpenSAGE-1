@@ -1,49 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace OpenSage.Gui.Apt.ActionScript
 {
-    /// <summary>
-    /// See SWF specification https://www.mobilefish.com/download/flash/swf_file_format_spec_v9.pdf
-    /// page 103
-    /// </summary>
-    public enum PropertyType
+    public sealed class Property
     {
-        X = 0,
-        Y,
-        XScale,
-        YScale,
-        CurrentFrame,
-        TotalFrames,
-        Alpha,
-        Visible,
-        Width,
-        Height,
-        Rotation,
-        Target,
-        FramesLoaded,
-        Name,
-        DropTarget,
-        Url,
-        HighQuality,
-        FocusRect,
-        SoundBufTime,
-        Quality,
-        XMouse,
-        YMouse,
-        Size
-        //TODO add rest
-    }
+        /// <summary>
+        /// See SWF specification https://www.mobilefish.com/download/flash/swf_file_format_spec_v9.pdf
+        /// page 103
+        /// </summary>
+        public enum Type
+        {
+            X = 0,
+            Y,
+            XScale,
+            YScale,
+            CurrentFrame,
+            TotalFrames,
+            Alpha,
+            Visible,
+            Width,
+            Height,
+            Rotation,
+            Target,
+            FramesLoaded,
+            Name,
+            DropTarget,
+            Url,
+            HighQuality,
+            FocusRect,
+            SoundBufTime,
+            Quality,
+            XMouse,
+            YMouse,
+            Size
+            //TODO add rest
+        }
+
+        public static readonly Dictionary<string, Type> StringMapping = new Dictionary<string, Type>()
+        {
+            { "_X",         Type.X},
+            { "_Y",         Type.Y},
+            { "_xscale",    Type.XScale},
+            { "_yscale",    Type.YScale},
+            //TODO: add more
+            { "_name",      Type.Name},
+        };
 
 
-    /// <summary>
-    /// properties exclusive to textfields
-    /// </summary>
-    public enum TextPropertyType
-    {
-        TextColor
+        /// <summary>
+        /// properties exclusive to textfields
+        /// </summary>
+        public enum TextPropertyType
+        {
+            TextColor
+        }
     }
 }

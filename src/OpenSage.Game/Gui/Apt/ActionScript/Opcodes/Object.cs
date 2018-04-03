@@ -126,7 +126,7 @@ namespace OpenSage.Gui.Apt.ActionScript.Opcodes
 
         public override void Execute(ActionContext context)
         {
-            var property = context.Stack.Pop().ToEnum<PropertyType>();
+            var property = context.Stack.Pop().ToEnum<Property.Type>();
             var target = context.GetTarget(context.Stack.Pop().ToString());
 
             var prop = target.ToObject().GetProperty(property);
@@ -144,7 +144,7 @@ namespace OpenSage.Gui.Apt.ActionScript.Opcodes
         public override void Execute(ActionContext context)
         {
             var value = context.Stack.Pop();
-            var property = context.Stack.Pop().ToEnum<PropertyType>();
+            var property = context.Stack.Pop().ToEnum<Property.Type>();
             var target = context.GetTarget(context.Stack.Pop().ToString());
 
             target.ToObject().SetProperty(property, value);

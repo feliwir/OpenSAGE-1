@@ -165,6 +165,9 @@ namespace OpenSage.Gui.Apt.ActionScript
                     case InstructionType.Increment:
                         instruction = new Increment();
                         break;
+                    case InstructionType.Decrement:
+                        instruction = new Decrement();
+                        break;
                     case InstructionType.CallMethod:
                         instruction = new CallMethod();
                         break;
