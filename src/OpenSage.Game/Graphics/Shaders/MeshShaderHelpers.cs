@@ -48,7 +48,10 @@ namespace OpenSage.Graphics.Shaders
             Matrix4x4 skinning1,
             Matrix4x4 skinning2)
         {
-            Matrix4x4 combined = (skinning1 * input.BoneWeight) + (skinning2 * input.BoneWeight2);
+            float weight1 = input.BoneWeight / 100.0f;
+            float weight2 = input.BoneWeight2 / 100.0f;
+
+            Matrix4x4 combined = (skinning1 * weight1) + (skinning2 * weight2);
 
             input.Position = Vector3.Transform(input.Position, combined);
             input.Normal = TransformNormal(input.Normal, combined);
