@@ -28,6 +28,7 @@ namespace OpenSage.Graphics.Effects
         public struct MeshConstants
         {
             public bool SkinningEnabled;
+            public bool WeightsEnabled;
             public uint NumBones;
         }
     }

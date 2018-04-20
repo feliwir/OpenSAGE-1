@@ -14,6 +14,9 @@ namespace OpenSage.Graphics
             public Vector3 Tangent;
             public Vector3 Binormal;
             public uint BoneIndex;
+            public uint BoneIndex2;
+            public uint BoneWeight;
+            public uint BoneWeight2;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -30,7 +33,10 @@ namespace OpenSage.Graphics
                 new VertexElementDescription("NORMAL", VertexElementSemantic.Normal, VertexElementFormat.Float3),
                 new VertexElementDescription("TANGENT", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3),
                 new VertexElementDescription("BINORMAL", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3),
-                new VertexElementDescription("BLENDINDICES", VertexElementSemantic.TextureCoordinate, VertexElementFormat.UInt1)),
+                new VertexElementDescription("BLENDINDICES", VertexElementSemantic.TextureCoordinate, VertexElementFormat.UInt1),
+                new VertexElementDescription("BLENDINDICES", VertexElementSemantic.TextureCoordinate, VertexElementFormat.UInt1),
+                new VertexElementDescription("BLENDWEIGHT", VertexElementSemantic.TextureCoordinate, VertexElementFormat.UInt1),
+                new VertexElementDescription("BLENDWEIGHT", VertexElementSemantic.TextureCoordinate, VertexElementFormat.UInt1)),
 
             new VertexLayoutDescription(
                 new VertexElementDescription("TEXCOORD", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),

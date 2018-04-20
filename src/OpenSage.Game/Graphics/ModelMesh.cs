@@ -51,6 +51,7 @@ namespace OpenSage.Graphics
             Effect effect,
             ModelMeshMaterialPass[] materialPasses,
             bool isSkinned,
+            bool hasWeights,
             ModelBone parentBone,
             uint numBones,
             BoundingBox boundingBox,
@@ -85,6 +86,7 @@ namespace OpenSage.Graphics
 
             _meshConstantsBuffer = AddDisposable(new ConstantBuffer<MeshMaterial.MeshConstants>(graphicsDevice));
             _meshConstantsBuffer.Value.SkinningEnabled = isSkinned;
+            _meshConstantsBuffer.Value.WeightsEnabled = hasWeights;
             _meshConstantsBuffer.Value.NumBones = numBones;
             _meshConstantsBuffer.Update(commandEncoder);
 

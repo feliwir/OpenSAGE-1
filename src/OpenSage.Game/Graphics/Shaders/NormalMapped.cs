@@ -76,7 +76,16 @@ namespace OpenSage.Graphics.Shaders
 
             if (MeshConstants.SkinningEnabled == 1)
             {
-                GetSkinnedVertexData(ref input, SkinningBuffer[input.BoneIndex]);
+                if (MeshConstants.WeightsEnabled == 1)
+                {
+                    GetSkinnedVertexDataWithWeights(ref input,
+                                        SkinningBuffer[input.BoneIndex],
+                                        SkinningBuffer[input.BoneIndex2]);
+                }
+                else
+                {
+                    GetSkinnedVertexData(ref input, SkinningBuffer[input.BoneIndex]);
+                }
             }
 
             VSSkinnedInstanced(

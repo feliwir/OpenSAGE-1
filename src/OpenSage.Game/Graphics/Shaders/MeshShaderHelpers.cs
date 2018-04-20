@@ -15,6 +15,9 @@ namespace OpenSage.Graphics.Shaders
             [TextureCoordinateSemantic] public Vector3 Binormal;
 
             [TextureCoordinateSemantic] public uint BoneIndex;
+            [TextureCoordinateSemantic] public uint BoneIndex2;
+            [TextureCoordinateSemantic] public uint BoneWeight;
+            [TextureCoordinateSemantic] public uint BoneWeight2;
 
             [TextureCoordinateSemantic] public Vector2 UV0;
             [TextureCoordinateSemantic] public Vector2 UV1;
@@ -23,6 +26,7 @@ namespace OpenSage.Graphics.Shaders
         public struct MeshConstants
         {
             public /* bool */ uint SkinningEnabled;
+            public /* bool */ uint WeightsEnabled;
             public uint NumBones;
         }
 
@@ -30,13 +34,24 @@ namespace OpenSage.Graphics.Shaders
         {
             public Matrix4x4 World;
         }
-        
+
         public static void GetSkinnedVertexData(
             ref VertexInput input,
             Matrix4x4 skinning)
         {
             input.Position = Vector3.Transform(input.Position, skinning);
             input.Normal = TransformNormal(input.Normal, skinning);
+        }
+
+        public static void GetSkinnedVertexDataWithWeights(
+            ref VertexInput input,
+            Matrix4x4 skinning1,
+            Matrix4x4 skinning2)
+        {
+            Matrix4x4 combined = (skinning1 * input.BoneWeight) + (skinning2 * input.BoneWeight2);
+
+            input.Position = Vector3.Transform(input.Position, combined);
+            input.Normal = TransformNormal(input.Normal, combined);
         }
 
         public static void VSSkinnedInstancedPositionOnly(

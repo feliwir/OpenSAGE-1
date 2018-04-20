@@ -191,11 +191,12 @@ namespace OpenSage.Content
             return new ModelMesh(
                 contentManager.GraphicsDevice,
                 w3dMesh.Header.MeshName,
-                CreateVertices(w3dMesh, isSkinned),
+                CreateVertices(w3dMesh, isSkinned,out bool hasWeights),
                 CreateIndices(w3dMesh),
                 effect,
                 materialPasses,
                 isSkinned,
+                hasWeights,
                 parentBone,
                 (uint) numBones,
                 boundingBox,
@@ -269,10 +270,12 @@ namespace OpenSage.Content
 
         private static MeshVertex.Basic[] CreateVertices(
             W3dMesh w3dMesh,
-            bool isSkinned)
+            bool isSkinned,
+            out bool hasWeights)
         {
             var numVertices = (uint) w3dMesh.Vertices.Length;
             var vertices = new MeshVertex.Basic[numVertices];
+            hasWeights = false;
 
             for (var i = 0; i < numVertices; i++)
             {
@@ -288,8 +291,20 @@ namespace OpenSage.Content
                         : Vector3.Zero,
                     BoneIndex = isSkinned
                         ? w3dMesh.Influences[i].BoneIndex
-                        : 0u
+                        : 0u,
+                    BoneIndex2 = isSkinned
+                        ? w3dMesh.Influences[i].BoneIndex2
+                        : 0u,
+                    BoneWeight = isSkinned
+                        ? w3dMesh.Influences[i].BoneWeight
+                        : 0u,
+                    BoneWeight2 = isSkinned
+                        ? w3dMesh.Influences[i].BoneWeight2
+                        : 0u,
                 };
+
+                if (isSkinned && vertices[i].BoneIndex2 != 0)
+                    hasWeights = true;
             }
 
             return vertices;
