@@ -296,11 +296,11 @@ namespace OpenSage.Content
                         ? w3dMesh.Influences[i].BoneIndex2
                         : 0u,
                     BoneWeight = isSkinned
-                        ? w3dMesh.Influences[i].BoneWeight
-                        : 0u,
+                        ? w3dMesh.Influences[i].BoneWeight / 100.0f
+                        : 0.0f,
                     BoneWeight2 = isSkinned
-                        ? w3dMesh.Influences[i].BoneWeight2
-                        : 0u,
+                        ? w3dMesh.Influences[i].BoneWeight2 / 100.0f
+                        : 0.0f,
                 };
 
                 if (isSkinned && vertices[i].BoneIndex2 != 0)
