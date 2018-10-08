@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>OpenSage</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssetsDir>$(MSBuildThisFileDirectory)Assets</AssetsDir>
@@ -8,7 +8,7 @@
     <ShaderJsonIntermediateDirectory>$(MSBuildThisFileDirectory)\obj\Shaders.Json</ShaderJsonIntermediateDirectory>
 
     <ShaderOutputPath>$(MSBuildThisFileDirectory)\obj\Shaders.Generated</ShaderOutputPath>
-    <ShaderProcessorAssembly>$(MSBuildThisFileDirectory)\..\OpenSage.Game.Shaders.Processor\bin\$(Configuration)\netstandard2.0\OpenSage.Game.Shaders.Processor.dll</ShaderProcessorAssembly>
+    <ShaderProcessorAssembly>$(MSBuildThisFileDirectory)\..\OpenSage.Game.Shaders.Processor\bin\$(Configuration)\netcoreapp2.1\OpenSage.Game.Shaders.Processor.dll</ShaderProcessorAssembly>
     <ShaderProcessorArgs>$(ShaderJsonIntermediateDirectory)</ShaderProcessorArgs>
   </PropertyGroup>
   <ItemGroup>
@@ -19,8 +19,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.4.0" />
     <PackageReference Include="OpenAL-CS" Version="1.0.11" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0004" />
-    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0004" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="ShaderGen.Primitives" Version="$(ShaderGenVersion)" />

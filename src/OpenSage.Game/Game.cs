@@ -201,7 +201,7 @@ namespace OpenSage
 
             GameSystems = new List<GameSystem>();
 
-            Audio = AddDisposable(new AudioSystem(this));
+            //Audio = AddDisposable(new AudioSystem(this));
 
             Graphics = AddDisposable(new GraphicsSystem(this));
 
